@@ -577,7 +577,7 @@ namespace NexusForever.WorldServer.Game.Entity
             ZoneMapManager.SendInitialPackets();
             Session.AccountCurrencyManager.SendInitialPackets();
             QuestManager.SendInitialPackets();
-            AchievementManager.SendInitialPackets();
+            AchievementManager.SendInitialPackets(null);
             Session.EntitlementManager.SendInitialPackets();
             TradeskillManager.SendInitialPackets();
 

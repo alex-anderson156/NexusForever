@@ -590,10 +590,14 @@ namespace NexusForever.Shared.GameTable
         public GameTable<TicketCategoryEntry> TicketCategory { get; private set; }
         public GameTable<TicketSubCategoryEntry> TicketSubCategory { get; private set; }
         public GameTable<TrackingSlotEntry> TrackingSlot { get; private set; }
+        
+        [GameData]
         public GameTable<TradeskillEntry> Tradeskill { get; private set; }
         public GameTable<TradeskillAchievementLayoutEntry> TradeskillAchievementLayout { get; private set; }
         public GameTable<TradeskillAchievementRewardEntry> TradeskillAchievementReward { get; private set; }
+        [GameData]
         public GameTable<TradeskillAdditiveEntry> TradeskillAdditive { get; private set; }
+        [GameData] 
         public GameTable<TradeskillBonusEntry> TradeskillBonus { get; private set; }
         public GameTable<TradeskillCatalystEntry> TradeskillCatalyst { get; private set; }
         public GameTable<TradeskillCatalystOrderingEntry> TradeskillCatalystOrdering { get; private set; }
@@ -604,8 +608,11 @@ namespace NexusForever.Shared.GameTable
 
         public GameTable<TradeskillMaterialCategoryEntry> TradeskillMaterialCategory { get; private set; }
         public GameTable<TradeskillProficiencyEntry> TradeskillProficiency { get; private set; }
+        [GameData] 
         public GameTable<TradeskillSchematic2Entry> TradeskillSchematic2 { get; private set; }
+        [GameData] 
         public GameTable<TradeskillTalentTierEntry> TradeskillTalentTier { get; private set; }
+        [GameData] 
         public GameTable<TradeskillTierEntry> TradeskillTier { get; private set; }
         public GameTable<TutorialEntry> Tutorial { get; private set; }
         public GameTable<TutorialAnchorEntry> TutorialAnchor { get; private set; }

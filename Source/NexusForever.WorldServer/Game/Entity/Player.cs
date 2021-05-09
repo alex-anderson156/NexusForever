@@ -30,6 +30,7 @@ using NexusForever.WorldServer.Game.Setting.Static;
 using NexusForever.WorldServer.Game.Social;
 using NexusForever.WorldServer.Game.Social.Static;
 using NexusForever.WorldServer.Game.Static;
+using NexusForever.WorldServer.Game.Tradeskills;
 using NexusForever.WorldServer.Network;
 using NexusForever.WorldServer.Network.Message.Model;
 using NexusForever.WorldServer.Network.Message.Model.Shared;
@@ -165,6 +166,7 @@ namespace NexusForever.WorldServer.Game.Entity
         public ReputationManager ReputationManager { get; }
         public GuildManager GuildManager { get; }
         public ChatManager ChatManager { get; }
+        public TradeskillManager TradeskillManager { get; }
 
         public VendorInfo SelectedVendorInfo { get; set; } // TODO unset this when too far away from vendor
 
@@ -225,6 +227,7 @@ namespace NexusForever.WorldServer.Game.Entity
             ReputationManager       = new ReputationManager(this, model);
             GuildManager            = new GuildManager(this, model);
             ChatManager             = new ChatManager(this);
+            TradeskillManager       = new TradeskillManager(this, model);
 
             // temp
             Properties.Add(Property.BaseHealth, new PropertyValue(Property.BaseHealth, 200f, 800f));
@@ -280,6 +283,7 @@ namespace NexusForever.WorldServer.Game.Entity
             SpellManager.Update(lastTick);
             CostumeManager.Update(lastTick);
             QuestManager.Update(lastTick);
+            TradeskillManager.Update(lastTick);
 
             saveTimer.Update(lastTick);
             if (saveTimer.HasElapsed)
@@ -418,7 +422,7 @@ namespace NexusForever.WorldServer.Game.Entity
             XpManager.Save(context);
             ReputationManager.Save(context);
             GuildManager.Save(context);
-
+            TradeskillManager.Save(context);
             Session.EntitlementManager.Save(context);
         }
 
@@ -575,11 +579,12 @@ namespace NexusForever.WorldServer.Game.Entity
             QuestManager.SendInitialPackets();
             AchievementManager.SendInitialPackets();
             Session.EntitlementManager.SendInitialPackets();
+            TradeskillManager.SendInitialPackets();
 
             Session.EnqueueMessageEncrypted(new ServerPlayerInnate
             {
                 InnateIndex = InnateIndex
-            });
+            }); 
         }
 
         public ItemProficiency GetItemProficiencies()
